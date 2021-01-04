@@ -1,4 +1,4 @@
-package main
+package module github.com/panriluthrendir/go-test-heroku
 
 import (
 	"fmt"
