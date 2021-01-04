@@ -13,13 +13,17 @@ func main() {
     PRIMES := primesUnder(10e5)
 	
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-        keys, _ := r.URL.Query()["num"]
+        keys, present := r.URL.Query()["num"]
+	    if present {
 		num, err := strconv.Atoi(keys[0])
 		if err != nil {
 			fmt.Fprint(w, err)
-		}
+		} else {
+			
 	       factors, _ := factorize(num, PRIMES)
-           fmt.Print(w, factors)
+		fmt.Print(w, factors)
+		}
+	    }
     })
 
     http.ListenAndServe(":" + PORT, nil)
