@@ -21,7 +21,7 @@ func main() {
             } else {
                 factors, _ := factorize(num, PRIMES)
                 factorsJson, _ := json.Marshal(factors)
-                fmt.Fprint(w, factorsJson)
+                fmt.Fprint(w, string(factorsJson))
             }
         }
     })
