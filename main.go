@@ -21,9 +21,10 @@ func main() {
 		} else {
 			
 	       factors, _ := factorize(num, PRIMES)
-		fmt.Print(w, factors)
+		fmt.Fprint(w, factors)
 		}
 	    }
+	    fmt.Fprint(w, keys)
     })
 
     http.ListenAndServe(":" + PORT, nil)
