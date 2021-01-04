@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 	"os"
+	"strconv"
 )
 
 func main() {
@@ -11,9 +12,9 @@ func main() {
 	PRIMES := primesUnder(10e5)
 	
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    	num, present := r.URL.Query()["num"]
+    	keys, present := r.URL.Query()["num"]
 	  	if present {
-			fmt.Print(w, factorize(int(num), PRIMES))
+			fmt.Print(w, factorize(strconv.Atoi(keys[0]), PRIMES))
 	  	} 
       	fmt.Fprint(w, "Hello World!")
    	})
