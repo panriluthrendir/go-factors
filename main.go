@@ -1,38 +1,38 @@
 package main
 
 import (
-   "fmt"
-   "net/http"
-   "os"
-   "strconv"
-   "errors"
+    "errors"
+    "fmt"
+    "net/http"
+    "os"
+    "strconv"
 )
 
 func main() {
     PORT := os.Getenv("PORT")
     PRIMES := primesUnder(10e5)
-	
+
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         keys, present := r.URL.Query()["num"]
-	    if present {
-		num, err := strconv.Atoi(keys[0])
-		if err != nil {
-			fmt.Fprint(w, err)
-		} else {
-			
-	       factors, _ := factorize(num, PRIMES)
-		fmt.Fprint(w, factors)
-		}
-	    }
-	    fmt.Fprint(w, keys)
+        if present {
+            num, err := strconv.Atoi(keys[0])
+            if err != nil {
+                fmt.Fprint(w, err)
+            } else {
+
+                factors, _ := factorize(num, PRIMES)
+                fmt.Fprint(w, factors)
+            }
+        }
+        fmt.Fprint(w, keys)
     })
 
-    http.ListenAndServe(":" + PORT, nil)
+    http.ListenAndServe(":"+PORT, nil)
 }
 
 func factorize(num int, primes []int) (map[int]int, error) {
     result := make(map[int]int)
-    
+
     for _, p := range primes {
         if num == 1 {
             return result, nil
@@ -43,7 +43,7 @@ func factorize(num int, primes []int) (map[int]int, error) {
         }
         i := 0
         for {
-            if num % p == 0 {
+            if num%p == 0 {
                 i++
                 num = num / p
             } else {
@@ -64,7 +64,7 @@ func primesUnder(N int) []int {
         isComposite = append(isComposite, false)
     }
 
-    for n := 2; n< N/2; n++ {
+    for n := 2; n < N/2; n++ {
         for i := 2; i < N/n; i++ {
             isComposite[i*n] = true
         }
