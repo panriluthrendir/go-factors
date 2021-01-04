@@ -1,23 +1,24 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
-	"os"
-	"strconv"
+   "fmt"
+   "net/http"
+   "os"
+   "strconv"
+   "errors"
 )
 
 func main() {
-	PORT := os.Getenv("PORT")
-	PRIMES := primesUnder(10e5)
+    PORT := os.Getenv("PORT")
+    PRIMES := primesUnder(10e5)
 	
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-    	keys, present := r.URL.Query()["num"]
-	  	if present {
-			fmt.Print(w, factorize(strconv.Atoi(keys[0]), PRIMES))
-	  	} 
+        keys, present := r.URL.Query()["num"]
+	    if present {
+            fmt.Print(w, factorize(strconv.Atoi(keys[0]), PRIMES))
+	    } 
       	fmt.Fprint(w, "Hello World!")
-   	})
+    })
 
     http.ListenAndServe(":" + PORT, nil)
 }
