@@ -5,7 +5,10 @@ import (
     "net/http"
     "os"
     "strconv"
+    "encoding/json"
 )
+
+func 
 
 func main() {
     PORT := os.Getenv("PORT")
@@ -18,12 +21,10 @@ func main() {
             if err != nil {
                 fmt.Fprint(w, err)
             } else {
-
                 factors, _ := factorize(num, PRIMES)
-                fmt.Fprint(w, factors)
+                fmt.Fprint(w, json.Marshal(factors))
             }
         }
-        fmt.Fprint(w, keys)
     })
 
     http.ListenAndServe(":"+PORT, nil)
