@@ -16,7 +16,7 @@ func main() {
         keys, present := r.URL.Query()["num"]
 	if present {
 		num, _ := strconv.Atoi(keys[0])
-	       factors, _ : = factorize(num, PRIMES)
+	       factors, _ := factorize(num, PRIMES)
            fmt.Print(w, factors)
 	} 
       	fmt.Fprint(w, "Hello World!")
