@@ -22,7 +22,7 @@ func main() {
 	       factors, _ := factorize(num, PRIMES)
            fmt.Print(w, factors)
 	} 
-      	fmt.Fprint(w, "Hello World!")
+      	fmt.Fprint(w, keys)
     })
 
     http.ListenAndServe(":" + PORT, nil)
