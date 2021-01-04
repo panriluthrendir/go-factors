@@ -15,7 +15,10 @@ func main() {
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         keys, present := r.URL.Query()["num"]
 	if present {
-		num, _ := strconv.Atoi(keys[0])
+		num, err := strconv.Atoi(keys[0])
+		if err != nil {
+			fmt.FPrint(w, err)
+		}
 	       factors, _ := factorize(num, PRIMES)
            fmt.Print(w, factors)
 	} 
