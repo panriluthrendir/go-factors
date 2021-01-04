@@ -22,7 +22,7 @@ func main() {
                 fmt.Fprint(w, err)
             } else {
                 factors, _ := factorize(num, PRIMES)
-                fmt.Fprint(w, json.Marshal(factors))
+                fmt.Fprint(w, string(json.Marshal(factors)))
             }
         }
     })
