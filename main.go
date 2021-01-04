@@ -17,7 +17,7 @@ func main() {
 	if present {
 		num, err := strconv.Atoi(keys[0])
 		if err != nil {
-			fmt.FPrint(w, err)
+			fmt.Fprint(w, err)
 		}
 	       factors, _ := factorize(num, PRIMES)
            fmt.Print(w, factors)
