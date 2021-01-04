@@ -8,8 +8,6 @@ import (
     "encoding/json"
 )
 
-func 
-
 func main() {
     PORT := os.Getenv("PORT")
     PRIMES := primesUnder(10e5)
