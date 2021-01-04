@@ -10,7 +10,7 @@ import (
 
 func main() {
     PORT := os.Getenv("PORT")
-    PRIMES := primesUnder(10e7)
+    PRIMES := primesUnder(10e6)
 
     http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
         keys, present := r.URL.Query()["num"]
