@@ -39,7 +39,9 @@ func formatFactors(n int, factors map[int]int) string {
     for p, deg := range factors {
         if deg > 1 {
             result += fmt.Sprint(" * %d^%d, p, deg)
-        }
+        } else {
+            result += fmt.Sprint(" * %d, p)
+        }                              
     }
     return result                             
 }
