@@ -8,14 +8,14 @@ import (
     "strconv"
 )
 
-func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
+func renderTemplate(w http.ResponseWriter, tmpl string, factors string) {
     t, _ := template.ParseFiles(tmpl + ".html")
     t.Execute(w, factors)
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
     if r.Method == "GET" {
-        renderTemplate(w, "form", nil)
+        renderTemplate(w, "form", "")
     } else {
         num, err := strconv.Atoi(r.FormValue("number"))
         if err != nil {
@@ -23,7 +23,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
         } else {
             primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
-            renderTemplate(w, "form", factors)
+            renderTemplate(w, "form", fmt.Sprint(factors))
         }
     }
 }
