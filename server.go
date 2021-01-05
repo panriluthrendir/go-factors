@@ -13,7 +13,7 @@ var templates = template.Must(template.ParseFiles("form.html"))
 var primes = primesUnder(10e6)
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors string) {
-    err := templates.ExecuteTemplate(w, tmpl+"html", factors)
+    err := templates.ExecuteTemplate(w, tmpl+".html", factors)
     if err != nil {
         fmt.Fprint(w, err)
     } 
