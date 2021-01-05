@@ -23,7 +23,8 @@ func handle(w http.ResponseWriter, r *http.Request) {
         } else {
             primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
-            renderTemplate(w, "form", factors)
+            fmt.Fprint(w, factors)
+            // renderTemplate(w, "form", factors)
         }
     }
 }
