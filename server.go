@@ -28,9 +28,20 @@ func handle(w http.ResponseWriter, r *http.Request) {
             fmt.Fprint(w, err)
         } else {
             factors, _ := factorize(num, primes)
-            renderTemplate(w, "form", fmt.Sprint(factors))
+            renderTemplate(w, "form", formatFactors(num, factors))
         }
     }
+}
+
+func formatFactors(n int, factors map[int]int) string {
+    result := fmt.Sprint("%d = ", n)
+    
+    for p, deg := range factors {
+        if deg > 1 {
+            result += fmt.Sprint(" * %d^%d, p, deg)
+        }
+    }
+    return result                             
 }
 
 func main() {
