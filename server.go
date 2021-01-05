@@ -19,7 +19,6 @@ func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
 func handle(w http.ResponseWriter, r *http.Request) {
     if r.Method == http.MethodGet {
         renderTemplate(w, "form", nil)
-        fmt.Fprint(w, r)
     } else {
         num, err := strconv.Atoi(r.FormValue("number"))
         if err != nil {
@@ -27,7 +26,8 @@ func handle(w http.ResponseWriter, r *http.Request) {
         } else {
             primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
-            renderTemplate(w, "form", factors)
+            fmt.Fprint(w, factors)
+            //renderTemplate(w, "form", factors)
         }
     }
 }
