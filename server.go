@@ -19,7 +19,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
     } else {
         num, err := strconv.Atoi(r.FormValue("number"))
         if err != nil {
-            fmt.Fprint(err)
+            fmt.Fprint(w, err)
         } else {
             primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
