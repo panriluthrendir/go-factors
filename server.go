@@ -9,7 +9,7 @@ import (
 )
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
-    t, err := template.ParseFiles(tmpl + ".html")
+    t, _ := template.ParseFiles(tmpl + ".html")
     t.Execute(w, factors)
 }
 
