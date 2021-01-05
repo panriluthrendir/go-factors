@@ -14,7 +14,7 @@ func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
-    if r.Method == http.MethodGet {
+    if r.Method == "GET" {
         renderTemplate(w, "form", nil)
     } else {
         num, err := strconv.Atoi(r.FormValue("number"))
