@@ -34,7 +34,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func formatFactors(n int, factors map[int]int) string {
-    result := fmt.Sprint("%d = ", n)
+    result := fmt.Sprintf("%d = ", n)
     
     for p, deg := range factors {
         if deg > 1 {
