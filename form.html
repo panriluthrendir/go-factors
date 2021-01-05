@@ -9,21 +9,23 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   </head>
   <body>
-    <form action="/" method="post">
-      <br/>
-      <div class="row">
-        <h3>Number:</h3>
-        <input type="text" name="number"/>
-      </div>
-      <br/>
-      <div class="row">
-        <input type="submit" value="Submit">
-      </div>
-      <br/>
-      <div class="row">
-        <h3>Result:</h3>
-        <p> {{ . }} </p>
-      </div>
-    </form>
+    <div class="jumbotron">
+      <form action="/" method="post">
+        <br/>
+        <div class="row">
+          <h4>Number:</h4>
+          <input type="text" name="number"/>
+        </div>
+        <br/>
+        <div class="row">
+          <input type="submit" value="Submit">
+        </div>
+        <br/>
+        <div class="row">
+          <h4>Result:</h4>
+          <p> {{ . }} </p>
+        </div>
+      </form>
+    </div>
   </body>
 </html>
