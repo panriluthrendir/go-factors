@@ -4,6 +4,7 @@ import (
     "net/http"
     "os"
     "strconv"
+    "template"
 )
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
@@ -19,7 +20,8 @@ func handle(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             renderTemplate(w, "form", nil)
         } else {
-            factors, _ := factorize(num, PRIMES)
+            primes := primesUnder(10e6)
+            factors, _ := factorize(num, primes)
             renderTemplate(w, "form", factors)
         }
     }
@@ -27,7 +29,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 func main() {
     PORT := os.Getenv("PORT")
-    PRIMES := primesUnder(10e6)
 
     http.HandleFunc("/", handle)
     http.ListenAndServe(":"+PORT, nil)
