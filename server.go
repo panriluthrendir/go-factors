@@ -8,8 +8,12 @@ import (
     "strconv"
 )
 
+var PORT = os.Getenv("PORT")
+var templates = template.Must(template.ParseFiles("form.html"))
+var primes = primesUnder(10e6)
+
 func renderTemplate(w http.ResponseWriter, tmpl string, factors string) {
-    err := template.ExecuteTemplate(w, tmpl+"html", factors)
+    err := templates.ExecuteTemplate(w, tmpl+"html", factors)
     if err != nil {
         fmt.Fprint(w, err)
     } 
@@ -23,7 +27,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             fmt.Fprint(w, err)
         } else {
-            primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
             renderTemplate(w, "form", fmt.Sprint(factors))
         }
@@ -31,10 +34,6 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-    PORT := os.Getenv("PORT")
-    
-    var templates = template.Must(template.ParseFiles("form.html"))
-
     http.HandleFunc("/", handle)
     http.ListenAndServe(":"+PORT, nil)
 }
