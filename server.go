@@ -10,9 +10,10 @@ import (
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
     t, err := template.ParseFiles(tmpl + ".html")
-    t.Execute(w, factors)
     if err != nil {
         fmt.Fprint(w, err)
+    } else {
+        t.Execute(w, factors)
     }
 }
 
