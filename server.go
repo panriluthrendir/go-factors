@@ -1,10 +1,10 @@
 package main
 
 import (
+    "html/template"
     "net/http"
     "os"
     "strconv"
-    "template"
 )
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
