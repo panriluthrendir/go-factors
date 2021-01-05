@@ -8,7 +8,7 @@ import (
     "strconv"
 )
 
-func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
+func renderTemplate(w http.ResponseWriter, tmpl string, factors string) {
     t, _ := template.ParseFiles(tmpl + ".html")
     t.Execute(w, factors)
 }
@@ -23,8 +23,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
         } else {
             primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
-            fmt.Fprint(w, factors)
-            // renderTemplate(w, "form", factors)
+            renderTemplate(w, "form", string(factors))
         }
     }
 }
