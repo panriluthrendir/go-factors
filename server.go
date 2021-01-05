@@ -1,6 +1,7 @@
 package main
 
 import (
+    "fmt"
     "html/template"
     "net/http"
     "os"
@@ -8,7 +9,10 @@ import (
 )
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
-    t, _ := template.ParseFiles(tmpl + ".html")
+    t, err := template.ParseFiles(tmpl + ".html")
+    if err != nil {
+        fmt.Fprint(w, err)
+    }
     t.Execute(w, factors)
 }
 
