@@ -11,7 +11,7 @@ import (
 func renderTemplate(w http.ResponseWriter, tmpl string, factors string) {
     err := template.ExecuteTemplate(w, tmpl+"html", factors)
     if err != nil {
-        w.Fprint(w, err)
+        fmt.Fprint(w, err)
     } 
 }
 
