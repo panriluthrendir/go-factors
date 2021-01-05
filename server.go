@@ -33,7 +33,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 func main() {
     PORT := os.Getenv("PORT")
     
-    var templates = template.Must(template.ParseFiles("form.html")
+    var templates = template.Must(template.ParseFiles("form.html"))
 
     http.HandleFunc("/", handle)
     http.ListenAndServe(":"+PORT, nil)
