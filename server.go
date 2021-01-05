@@ -10,10 +10,10 @@ import (
 
 func renderTemplate(w http.ResponseWriter, tmpl string, factors map[int]int) {
     t, err := template.ParseFiles(tmpl + ".html")
+    t.Execute(w, factors)
     if err != nil {
         fmt.Fprint(w, err)
     }
-    t.Execute(w, factors)
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
@@ -22,12 +22,11 @@ func handle(w http.ResponseWriter, r *http.Request) {
     } else {
         num, err := strconv.Atoi(r.FormValue("number"))
         if err != nil {
-            fmt.Fprint(w, err)
+            renderTemplate(w, "form", nil)
         } else {
             primes := primesUnder(10e6)
             factors, _ := factorize(num, primes)
-            fmt.Fprint(w, factors)
-            //renderTemplate(w, "form", factors)
+            renderTemplate(w, "form", factors)
         }
     }
 }
