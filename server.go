@@ -35,12 +35,17 @@ func handle(w http.ResponseWriter, r *http.Request) {
 
 func formatFactors(n int, factors map[int]int) string {
     result := fmt.Sprintf("%d = ", n)
+    ps := sortedKeys(factors)
     
-    for p, deg := range factors {
+    for i, p := range ps {
+        if i > 0 {
+            result += fmt.Sprintf(" * ")
+        }
+        deg := factors[p]
         if deg > 1 {
-            result += fmt.Sprintf(" * %d^%d", p, deg)
+            result += fmt.Sprintf("%d^%d", p, deg)
         } else {
-            result += fmt.Sprintf(" * %d", p)
+            result += fmt.Sprintf("%d", p)
         }                              
     }
     return result                             
