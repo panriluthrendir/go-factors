@@ -25,7 +25,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
     } else {
         num, err := strconv.Atoi(r.FormValue("number"))
         if err != nil {
-            fmt.Fprint(w, err)
+            renderTemplate(w, "form", "The given number is invalid!")
         } else {
             factors, _ := factorize(num, primes)
             renderTemplate(w, "form", formatFactors(num, factors))
