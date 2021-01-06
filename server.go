@@ -27,8 +27,12 @@ func handle(w http.ResponseWriter, r *http.Request) {
         if err != nil {
             renderTemplate(w, "form", "The given number is invalid!")
         } else {
-            factors, _ := factorize(num, primes)
-            renderTemplate(w, "form", formatFactors(num, factors))
+            factors, err := factorize(num, primes)
+            if err := nil {
+                renderTemplate(w, "form", err)
+            } else {
+                renderTemplate(w, "form", formatFactors(num, factors))
+            }
         }
     }
 }
