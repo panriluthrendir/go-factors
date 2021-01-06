@@ -28,7 +28,9 @@ func pprint(n int, sep string) string {
     result := digits[:overFlow]
     
     for i := 0; i < len(digits)/3; i++ {
-        result += sep
+        if len(result) > 0 {
+            result += sep
+        }
         result += digits[3*i + overFlow : 3*(i+1) + overFlow]
     }
     return result
