@@ -34,7 +34,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
 }
 
 func formatFactors(n int, factors map[int]int) string {
-    result := pprint(n) + " = "
+    result := pprint(n, ",") + " = "
     ps := sortedKeys(factors)
     
     for i, p := range ps {
@@ -43,9 +43,9 @@ func formatFactors(n int, factors map[int]int) string {
         }
         deg := factors[p]
         if deg > 1 {
-            result += pprint(p) + "^" + pprint(deg)
+            result += pprint(p, ",") + "^" + pprint(deg, ",")
         } else {
-            result += pprint(p)
+            result += pprint(p, ",")
         }                              
     }
     return result                             
