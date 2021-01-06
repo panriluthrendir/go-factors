@@ -29,7 +29,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
         } else {
             factors, err := factorize(num, primes)
             if err != nil {
-                renderTemplate(w, "form", err)
+                renderTemplate(w, "form", string(err))
             } else {
                 renderTemplate(w, "form", formatFactors(num, factors))
             }
