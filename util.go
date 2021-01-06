@@ -18,7 +18,7 @@ func sortedKeys(m map[int]int) []int {
 }
 
 func pprint(n int, sep string) string {
-    digits := strconv.FormatInt(n, 10)
+    digits := strconv.FormatInt(int64(n), 10)
     
     if  len(digits) < 4 {
         return digits
