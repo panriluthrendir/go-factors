@@ -29,7 +29,7 @@ func handle(w http.ResponseWriter, r *http.Request) {
         } else {
             factors, err := factorize(num, primes)
             if err != nil {
-                renderTemplate(w, "form", string(err))
+                renderTemplate(w, "form", "The given number is too large to factorize")
             } else {
                 renderTemplate(w, "form", formatFactors(num, factors))
             }
